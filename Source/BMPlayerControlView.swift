@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NVActivityIndicatorView
 
 
 @objc public protocol BMPlayerControlViewDelegate: class {
@@ -105,7 +104,8 @@ open class BMPlayerControlView: UIView {
     open var subtileAttribute: [NSAttributedString.Key : Any]?
     
     /// Activty Indector for loading
-    open var loadingIndicator  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
+    open var loadingIndicator  = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+//    open var loadingIndicator  = NVActivityIndicatorView(frame:  CGRect(x: 0, y: 0, width: 30, height: 30))
     
     open var seekToView       = UIView()
     open var seekToViewImage  = UIImageView()
@@ -303,12 +303,14 @@ open class BMPlayerControlView: UIView {
     }
     
     open func showLoader() {
+        
         loadingIndicator.isHidden = false
         loadingIndicator.startAnimating()
     }
     
     open func hideLoader() {
         loadingIndicator.isHidden = true
+        loadingIndicator.stopAnimating()
     }
     
     open func hideSeekToView() {
@@ -588,7 +590,6 @@ open class BMPlayerControlView: UIView {
         
         mainMaskView.addSubview(loadingIndicator)
         
-        loadingIndicator.type  = BMPlayerConf.loaderType
         loadingIndicator.color = BMPlayerConf.tintColor
         
         // View to show when slide to seek
