@@ -86,6 +86,7 @@ class VideoPlayViewController: UIViewController {
         let _ = self.navigationController?.popViewController(animated: true)
       }
     }
+      
     
     changeButton.setTitle("Change Video", for: .normal)
     changeButton.addTarget(self, action: #selector(onChangeVideoButtonPressed), for: .touchUpInside)
@@ -102,22 +103,7 @@ class VideoPlayViewController: UIViewController {
   
   
   @objc fileprivate func onChangeVideoButtonPressed() {
-    let urls = ["http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4",
-                "http://baobab.wdjcdn.com/1456117847747a_x264.mp4",
-                "http://baobab.wdjcdn.com/14525705791193.mp4",
-                "http://baobab.wdjcdn.com/1456459181808howtoloseweight_x264.mp4",
-                "http://baobab.wdjcdn.com/1455968234865481297704.mp4",
-                "http://baobab.wdjcdn.com/1455782903700jy.mp4",
-                "http://baobab.wdjcdn.com/14564977406580.mp4",
-                "http://baobab.wdjcdn.com/1456316686552The.mp4",
-                "http://baobab.wdjcdn.com/1456480115661mtl.mp4",
-                "http://baobab.wdjcdn.com/1456665467509qingshu.mp4",
-                "http://baobab.wdjcdn.com/1455614108256t(2).mp4",
-                "http://baobab.wdjcdn.com/1456317490140jiyiyuetai_x264.mp4",
-                "http://baobab.wdjcdn.com/1455888619273255747085_x264.mp4",
-                "http://baobab.wdjcdn.com/1456734464766B(13).mp4",
-                "http://baobab.wdjcdn.com/1456653443902B.mp4",
-                "http://baobab.wdjcdn.com/1456231710844S(24).mp4"]
+    let urls = ["https://cck-peiyin.oss-cn-hangzhou.aliyuncs.com/video/2022/10/13/2tq7haIAOpn9SuQ83PAvRXlLD9DkK38tgGvKKZQH.mp4"]
     let random = Int(arc4random_uniform(UInt32(urls.count)))
     let asset = BMPlayerResource(url: URL(string: urls[random])!, name: "Video @\(random)")
     player.setVideo(resource: asset)
@@ -129,7 +115,7 @@ class VideoPlayViewController: UIViewController {
       
     case (0,0):
       let str = Bundle.main.url(forResource: "SubtitleDemo", withExtension: "srt")!
-      let url = URL(string: "http://baobab.wdjcdn.com/1456117847747a_x264.mp4")!
+      let url = URL(string: "https://cck-peiyin.oss-cn-hangzhou.aliyuncs.com/video/2022/10/13/2tq7haIAOpn9SuQ83PAvRXlLD9DkK38tgGvKKZQH.mp4")!
       
       let subtitle = BMSubtitles(url: str)
       
@@ -228,14 +214,14 @@ class VideoPlayViewController: UIViewController {
    准备播放器资源model
    */
   func preparePlayerItem() -> BMPlayerResource {
-    let res0 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+    let res0 = BMPlayerResourceDefinition(url: URL(string: "https://cck-peiyin.oss-cn-hangzhou.aliyuncs.com/video/2022/10/13/2tq7haIAOpn9SuQ83PAvRXlLD9DkK38tgGvKKZQH.mp4")!,
                                           definition: "高清")
-    let res1 = BMPlayerResourceDefinition(url: URL(string: "http://baobab.wdjcdn.com/1457162012752491010143.mp4")!,
+    let res1 = BMPlayerResourceDefinition(url: URL(string: "https://cck-peiyin.oss-cn-hangzhou.aliyuncs.com/video/2022/10/13/2tq7haIAOpn9SuQ83PAvRXlLD9DkK38tgGvKKZQH.mp4")!,
                                           definition: "标清")
     
     let asset = BMPlayerResource(name: "周末号外丨中国第一高楼",
                                  definitions: [res0, res1],
-                                 cover: URL(string: "http://img.wdjimg.com/image/video/447f973848167ee5e44b67c8d4df9839_0_0.jpeg"))
+                                 cover: URL(string: "https://cck-peiyin.oss-cn-hangzhou.aliyuncs.com/video/2022/10/13/2tq7haIAOpn9SuQ83PAvRXlLD9DkK38tgGvKKZQH.mp4"))
     return asset
   }
   
@@ -302,7 +288,7 @@ extension VideoPlayViewController: BMPlayerDelegate {
   
   // Call back when play time change
   func bmPlayer(player: BMPlayer, playTimeDidChange currentTime: TimeInterval, totalTime: TimeInterval) {
-    //        print("| BMPlayerDelegate | playTimeDidChange | \(currentTime) of \(totalTime)")
+            print("| BMPlayerDelegate | playTimeDidChange | \(currentTime) of \(totalTime)")
   }
   
   // Call back when the video loaded duration changed
