@@ -193,10 +193,8 @@ class VideoPlayViewController: UIViewController {
       // 设置播放器属性，此情况下若提供了cover则先展示封面图，否则黑屏。点击播放后开始loading
       BMPlayerConf.topBarShowInCase = .always
       
-      
     case (1,1):
       BMPlayerConf.topBarShowInCase = .horizantalOnly
-      
       
     case (1,2):
       BMPlayerConf.topBarShowInCase = .none
@@ -283,6 +281,8 @@ extension VideoPlayViewController: BMPlayerDelegate {
   
   // Call back when playing state changed, use to detect specefic state like buffering, bufferfinished
   func bmPlayer(player: BMPlayer, playerStateDidChange state: BMPlayerState) {
+      print(player.playerLayer?.playerLayer?.visibleRect)
+      print(player.playerLayer?.playerLayer?.videoRect)
     print("| BMPlayerDelegate | playerStateDidChange | state - \(state)")
   }
   

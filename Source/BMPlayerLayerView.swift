@@ -100,7 +100,7 @@ open class BMPlayerLayerView: UIView {
     
     fileprivate var lastPlayerItem: AVPlayerItem?
     /// playerLayer
-    fileprivate var playerLayer: AVPlayerLayer?
+    open var playerLayer: AVPlayerLayer?
     /// 音量滑杆
     fileprivate var volumeViewSlider: UISlider!
     /// 播放器的几种状态
@@ -329,16 +329,16 @@ open class BMPlayerLayerView: UIView {
     // MARK: - Notification Event
     @objc fileprivate func moviePlayDidEnd() {
         if state != .playedToTheEnd {
+            self.state = .playedToTheEnd
+            self.isPlaying = false
+            self.playDidEnd = true
+            self.timer?.invalidate()
+            
             if let playerItem = playerItem {
                 delegate?.bmPlayer(player: self,
                                    playTimeDidChange: CMTimeGetSeconds(playerItem.duration),
                                    totalTime: CMTimeGetSeconds(playerItem.duration))
             }
-            
-            self.state = .playedToTheEnd
-            self.isPlaying = false
-            self.playDidEnd = true
-            self.timer?.invalidate()
         }
     }
     
